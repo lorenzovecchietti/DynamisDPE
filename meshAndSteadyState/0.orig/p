@@ -1,0 +1,130 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+	Fan_Batterie
+		{
+			type            zeroGradient;
+		}
+		
+	Fan_Batterie_slave
+		{
+			type            zeroGradient;
+		}
+	Fan_Batterie_Centrale
+		{
+			type            zeroGradient;
+		}
+	Fan_Batterie_Centrale_slave
+		{
+			type            zeroGradient;
+		}
+		
+	Fan_Radiatori
+    	{
+			type            zeroGradient;
+		}
+		
+	Fan_Radiatori_slave
+    	{
+			type            zeroGradient;
+		}
+	
+	
+    symmetry
+		{
+			type            symmetry;
+		}
+		
+    side
+		{
+			type            symmetryPlane;
+		}
+		
+    inlet
+		{
+			type            zeroGradient;
+		}
+		
+    outlet
+		{
+			type            fixedValue;
+			value           $internalField;
+		}
+	
+    ground
+		{
+			type            slip;
+		}
+	
+    top
+		{
+			type            symmetryPlane;
+		}
+	
+	
+	DPE_FW
+		{
+			type            zeroGradient;
+		}
+		
+		
+	DPE_Telaio
+		{
+			type            zeroGradient;
+		}
+		
+		
+	DPE_RW
+		{
+			type            zeroGradient;
+		}
+		
+		
+	DPE_MW
+		{
+			type            zeroGradient;
+		}
+		
+
+	DPE_Diffusore
+		{
+			type            zeroGradient;
+		}
+		
+
+		
+    DPE_FWheels
+		{
+			type            zeroGradient;
+		}
+	
+	
+	
+	
+    DPE_RWheels
+		{
+			type            zeroGradient;
+		}
+}
+
+
+// ************************************************************************* //

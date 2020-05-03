@@ -1,0 +1,132 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+	Fan_Batterie
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_slave
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_Centrale
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_Centrale_slave
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+	Fan_Radiatori
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+	Fan_Radiatori_slave
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+
+    symmetry
+		{
+			type            symmetry;
+		}
+		
+    side
+		{
+			type            symmetryPlane;
+		}
+		
+    inlet
+		{
+			type            calculated;
+			value           $internalField;
+		}
+		
+    outlet
+		{
+			type            calculated;
+			value           $internalField;
+		}
+    ground
+		{
+			type            nutkWallFunction;
+			value           $internalField;
+		}
+    top
+		{
+			type            symmetryPlane;
+		}
+		
+		
+    DPE_FW
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+    DPE_Telaio
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+    DPE_RW
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+    DPE_MW
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+    DPE_Diffusore
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+
+    DPE_FWheels
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+		
+		
+		
+    DPE_RWheels
+		{
+        type            calculated;
+        value           uniform 0;  
+		}
+}
+
+// ************************************************************************* //

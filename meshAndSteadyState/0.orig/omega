@@ -1,0 +1,134 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 -1 0 0 0 0];
+internalField   uniform 1.78;
+
+boundaryField
+{
+	Fan_Batterie
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_slave
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_Centrale
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	Fan_Batterie_Centrale_slave
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	Fan_Radiatori
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	Fan_Radiatori_slave
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+    symmetry
+		{
+			type            symmetry;
+		}
+
+    side
+		{
+			type            symmetryPlane;
+		}
+
+    inlet
+		{
+			type            fixedValue;
+			value           $internalField;
+		}
+
+    outlet
+		{
+			type            inletOutlet;
+			inletValue      $internalField;
+			value           $internalField;
+		}
+    ground
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+    top
+		{
+			type            symmetryPlane;
+		}
+	
+    DPE_FW
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+    DPE_Telaio
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+    DPE_RW
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+    DPE_MW
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+    DPE_Diffusore
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+
+
+    DPE_FWheels
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+	
+	
+	
+    DPE_RWheels
+		{
+			type            omegaWallFunction;
+			value           $internalField;
+		}
+		
+		
+}
+
+// ************************************************************************* //

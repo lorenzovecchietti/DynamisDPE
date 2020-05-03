@@ -1,0 +1,134 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+internalField   uniform 0.085;
+
+boundaryField
+{
+	Fan_Batterie
+		{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+	Fan_Batterie_slave
+		{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+	Fan_Batterie_Centrale
+		{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+	Fan_Batterie_Centrale_slave
+		{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+	Fan_Radiatori
+    	{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+	Fan_Radiatori_slave
+    	{
+        		type            kqRWallFunction;
+        		value           $internalField;
+		}
+
+    symmetry
+		{
+			type            symmetry;
+		}
+	
+    side
+		{
+			type            symmetryPlane;
+		}
+		
+    inlet
+		{
+			type            fixedValue;
+			value           $internalField;
+		}
+    outlet
+		{
+			type            inletOutlet;
+			inletValue      $internalField;
+			value           $internalField;
+		}
+    ground
+		{
+			type            kqRWallFunction;
+			value           $internalField;
+		}
+    top
+		{
+			type            symmetryPlane;
+		}
+
+
+    DPE_FW
+		{
+        type            fixedValue;
+        value           uniform 0;
+		}
+
+    DPE_Telaio
+		{
+        type            fixedValue;
+        value           uniform 0;
+		}
+
+    DPE_RW
+		{
+        type            fixedValue;
+        value           uniform 0;
+		}
+
+    DPE_MW
+		{
+        type            fixedValue;
+        value           uniform 0;
+		}
+
+    DPE_Diffusore
+		{
+        type            fixedValue;
+        value           uniform 0;
+		}
+
+
+    DPE_FWheels
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+	
+	
+	
+    DPE_RWheels
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+}
+
+
+
+// ************************************************************************* //

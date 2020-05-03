@@ -1,0 +1,135 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (16 0 0);
+
+boundaryField
+{
+	Fan_Batterie
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+	Fan_Batterie_slave
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+	Fan_Batterie_Centrale
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+	Fan_Batterie_Centrale_slave
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+	Fan_Radiatori
+    	{
+			type            fixedValue;
+			value           uniform (0 0 0);
+    	}
+	Fan_Radiatori_slave
+    	{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+	
+	symmetry
+		{
+			type            symmetry;
+		}
+
+	side
+		{
+			type            symmetryPlane;
+		}
+
+	top
+		{
+			type            symmetryPlane;
+		}
+
+	inlet
+		{
+			type            fixedValue;
+			value           $internalField;
+		}
+
+	outlet
+		{
+			type            zeroGradient;
+		}
+
+	ground
+		{
+			type            fixedValue;
+			value           uniform (16 0 0);
+		}
+
+	DPE_FW
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+
+	DPE_Telaio
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+
+	DPE_RW
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+
+	DPE_MW
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+
+	DPE_Diffusore
+		{
+			type            fixedValue;
+			value           uniform (0 0 0);
+		}
+
+
+    DPE_FWheels
+		{
+		    type            rotatingWallVelocity;
+		    origin          (0 0 0.233);
+		    axis            (0 1 0);
+		    omega           -61.54;
+		}
+
+    DPE_RWheels
+		{
+		    type            rotatingWallVelocity;
+		    origin          (1.55 0 0.233);
+		    axis            (0 1 0);
+		    omega           -61.54;
+		}
+}
+
+
+// ************************************************************************* //
