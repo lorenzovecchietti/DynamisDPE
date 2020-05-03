@@ -1,0 +1,90 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+
+pointSync false;
+
+patches
+(
+// Fan_Batterie
+    {   
+        name Fan_Batterie;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_slave;
+        }
+
+        constructFrom patches;
+        patches (Fan_Batterie_);
+    }
+    {
+        name Fan_Batterie_slave;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie;
+        }
+
+        constructFrom patches;
+        patches (Fan_Batterie__slave);
+    }
+
+// Fan_Batterie_Centrale
+	{   
+        name Fan_Batterie_Centrale;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_Centrale_slave;
+        }
+
+        constructFrom patches;
+        patches (Fan_Batterie_Centrale_);
+    }
+    {
+        name Fan_Batterie_Centrale_slave;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_Centrale;
+        }
+
+        constructFrom patches;
+        patches (Fan_Batterie_Centrale__slave);
+    }
+
+// Fan_Radiatori
+	{   
+        name Fan_Radiatori;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Radiatori_slave;
+        }
+
+        constructFrom patches;
+        patches (Fan_Radiatori_);
+    }
+    {
+        name Fan_Radiatori_slave;
+
+        patchInfo
+        {   
+            type cyclicAMI;
+            neighbourPatch Fan_Radiatori;
+        }
+
+        constructFrom patches;
+        patches (Fan_Radiatori__slave);
+    }
+);

@@ -1,0 +1,218 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// PRESSURE JUMP
+/*      boundary
+    {
+		Fan_Batterie_slave
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie;
+			}
+		Fan_Batterie
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_slave;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_Centrale;
+			}
+		Fan_Batterie_Centrale
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Batterie_Centrale_slave;
+			}
+		Fan_Radiatori_slave
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Radiatori;
+			}
+		Fan_Radiatori
+			{
+            type cyclicAMI;
+            neighbourPatch Fan_Radiatori_slave;
+			}
+    }  */
+	
+    U                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            cyclicAMI;
+			}
+	    }
+    }
+
+    p                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform 0;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform 0;
+			}
+		Fan_Radiatori_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform 0;
+			}
+	    }
+    }
+
+    nut                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            cyclicAMI;
+			}
+	    }
+    }
+
+    k                           // field to change
+    {
+    boundaryField
+        {
+				Fan_Batterie_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            cyclicAMI;
+			}
+        }
+    }
+
+    omega                           // field to change
+    {
+    boundaryField
+        {
+		Fan_Batterie_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            cyclicAMI;
+			}
+        }
+    }
+//}
+
+
+// ************************************************************************* //

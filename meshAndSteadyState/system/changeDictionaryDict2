@@ -1,0 +1,58 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// PRESSURE JUMP
+    p                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Batterie
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform 225;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Batterie_Centrale
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform 225;
+			}
+		Fan_Radiatori_slave
+			{
+			    type  fixedJumpAMI;
+			    patchType  cyclicAMI;
+			}
+		Fan_Radiatori
+			{
+				type  fixedJumpAMI;
+				patchType  cyclicAMI;
+				jump  uniform -140.0;
+			}
+	    }
+    }
+
+// ************************************************************************* //

@@ -1,0 +1,517 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Telaio_RefLvl_min    			8;
+Telaio_RefLvl_max    			8;
+
+FW_RefLvl_min		 			9;
+FW_RefLvl_max					9;
+
+RW_RefLvl            			9;
+MW_RefLvl            			9;
+
+Fwh_FeatLvl           			8;
+Fwh_RefLvl_min   	    		8;
+Fwh_RefLvl_max       			8;
+
+Rwh_FeatLvl        				8;
+Rwh_RefLvl_min    				8;
+Rwh_RefLvl_max 					8;
+
+Diff_RefLvl          			9;
+
+Radiatori_FeatLvl	 			8;
+Radiatori_RefLvl	 			8;
+
+Batterie_RefLvl	 				3;
+Batterie_FeatLvl	 			3;
+
+Fan_Radiatori_FeatLvl	 		8;
+Fan_Radiatori_RefLvl	 		8;
+
+Fan_Batterie_FeatLvl	 		8;
+Fan_Batterie_RefLvl	 			3;
+
+Fan_Batterie_Centrale_FeatLvl	8;
+Fan_Batterie_Centrale_RefLvl	3;
+
+Telaio_nLayers       			5;
+FW_nLayers           			6;
+RW_nLayers           			6;
+MW_nLayers           			6;
+Fwh_nLayers          			5;
+Rwh_nLayers          			5;
+Diff_nLayers         			6;
+
+//refinementBox1 - boxAnt
+min1                 (-1 0 0);
+max1                 (0.3 0.9 0.8);
+lvl1                 7;
+
+//refinementBox2 - boxPost
+min2                 (0.3 0 0);
+max2                 (2.1 0.9 1.5);
+lvl2                 7;
+
+//refinementBox3 - scia_lontana
+min3                 (4 0 0);
+max3                 (12.05 0.9 2);
+lvl3                 4;
+
+//refinementBox4 - bigBox
+min4                 (-1.5 0 0);
+max4                 (16.5 0.9 5);
+lvl4                 3;
+
+//refinementBox5 - FW
+min5                 (-0.94 0 0);
+max5                 (0.36 0.9 0.4);
+lvl5                 7;
+
+//refinementBox6 - Diff
+min6                 (1.3 0 0);
+max6                 (2.3 0.9 0.5);
+lvl6                 7;
+
+//refinementBox7 - scia_vicina
+min7                 (2.1 0 0);
+max7                 (4 0.9 2);
+lvl7                 5;
+
+// Which of the steps to run
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+
+geometry
+{
+    DPE_FW.stl
+    {
+        type triSurfaceMesh;
+        name DPE_FW;
+    }
+    Radiatori.stl
+    {
+        type triSurfaceMesh;
+        name Radiatori;
+    }
+    Batterie.stl
+    {
+        type triSurfaceMesh;
+        name Batterie;
+    }
+    DPE_Telaio.stl
+    {
+        type triSurfaceMesh;
+        name DPE_Telaio;
+    }
+     DPE_RW.stl
+    {
+        type triSurfaceMesh;
+        name DPE_RW;
+    }
+    DPE_MW.stl
+    {
+        type triSurfaceMesh;
+        name DPE_MW;
+    }
+     DPE_FWheels.stl
+    {
+        type triSurfaceMesh;
+        name DPE_FWheels;
+    }
+    DPE_RWheels.stl
+    {
+        type triSurfaceMesh;
+        name DPE_RWheels;
+    }
+    DPE_Diffusore.stl
+    {
+        type triSurfaceMesh;
+        name DPE_Diffusore;
+    }
+     Fan_Batterie_.stl
+    {
+        type triSurfaceMesh;
+        name Fan_Batterie_;
+    }
+	Fan_Batterie_Centrale_.stl
+    {
+        type triSurfaceMesh;
+        name Fan_Batterie_Centrale_;
+    }
+    Fan_Radiatori_.stl
+    {
+        type triSurfaceMesh;
+        name Fan_Radiatori_;
+    }
+
+    refinementBox
+    {
+        type searchableBox;
+        min $min1;
+        max $max1;
+    }
+    refinementBox2
+    {
+        type searchableBox;
+        min $min2;
+        max $max2;
+    }
+    refinementBox3
+    {
+        type searchableBox;
+        min $min3;
+        max $max3;
+    }
+    refinementBox4
+    {
+        type searchableBox;
+        min $min4;
+        max $max4;
+    }
+    refinementBox5
+    {
+        type searchableBox;
+        min $min5;
+        max $max5;
+    }
+    refinementBox6
+    {
+        type searchableBox;
+        min $min6;
+        max $max6;
+    }
+    refinementBox7
+    {
+        type searchableBox;
+        min $min7;
+        max $max7;
+    }
+};
+
+
+
+castellatedMeshControls
+{
+    maxLocalCells 250000000;
+    maxGlobalCells 250000000;
+    minRefinementCells 0;
+    maxLoadUnbalance 0.05;
+    nCellsBetweenLevels 2;
+
+    features
+    (
+        {
+            file "Radiatori.eMesh";
+            level $Radiatori_FeatLvl;
+        }
+        {
+            file "Batterie.eMesh";
+            level $Batterie_FeatLvl;
+        }
+        {
+            file "Fan_Radiatori_.eMesh";
+            level $Fan_Radiatori_FeatLvl;
+        }
+        {
+            file "Fan_Batterie_.eMesh";
+            level $Fan_Batterie_FeatLvl;
+        }
+		{
+            file "Fan_Batterie_Centrale_.eMesh";
+            level $Fan_Batterie_Centrale_FeatLvl;
+        } 
+        {
+            file "DPE_Telaio.eMesh";
+            level $Telaio_RefLvl_min;
+        }
+        {
+            file "DPE_FW.eMesh";
+            level $FW_RefLvl_min;
+        }
+        {
+            file "DPE_RW.eMesh";
+            level $RW_RefLvl;
+        }
+        {
+            file "DPE_MW.eMesh";
+            level $MW_RefLvl;
+        }
+        {
+            file "DPE_FWheels.eMesh";
+            level $Fwh_FeatLvl;
+        }
+        {
+            file "DPE_RWheels.eMesh";
+            level $Rwh_FeatLvl;
+        }
+        {
+            file "DPE_Diffusore.eMesh";
+            level $Diff_RefLvl;
+        }
+    );
+
+    refinementSurfaces
+    {
+
+ 	Radiatori
+	{
+            level ($Radiatori_RefLvl $Radiatori_RefLvl);	
+            faceZone    Radiatori;
+            cellZone    Radiatori;
+            cellZoneInside  inside;
+        }
+
+
+	Batterie
+	{
+		level ($Batterie_RefLvl $Batterie_RefLvl);	
+		faceZone Batterie;
+		cellZone Batterie;
+		cellZoneInside inside;
+	}
+
+        DPE_Telaio
+        {
+            level ($Telaio_RefLvl_min $Telaio_RefLvl_max);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Group);
+            }
+        }
+        DPE_FW
+        {
+            level ($FW_RefLvl_min $FW_RefLvl_max);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Group);
+            }
+        }
+        DPE_RW
+        {
+            level ($RW_RefLvl $RW_RefLvl);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Group);
+            }
+        }
+        DPE_MW
+        {
+            level ($MW_RefLvl $MW_RefLvl);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Group);
+            }
+        }
+        DPE_FWheels
+        {
+            level ($Fwh_RefLvl_min $Fwh_RefLvl_max);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Wheels);
+            }
+        }
+        DPE_RWheels
+        {
+            level ($Rwh_RefLvl_min $Rwh_RefLvl_max);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Wheels);
+            }
+        }
+        DPE_Diffusore
+        {
+            level ($Diff_RefLvl $Diff_RefLvl);
+            patchInfo
+            {
+                type wall;
+                inGroups (DPE_Group);
+            }
+        }
+        Fan_Batterie_
+        {
+        	level ($Fan_Batterie_RefLvl  $Fan_Batterie_RefLvl);
+        	faceZone Fan_Batterie_;
+        	faceType baffle;
+        }
+		Fan_Batterie_Centrale_
+		{
+        	level ($Fan_Batterie_Centrale_RefLvl  $Fan_Batterie_Centrale_RefLvl);
+        	faceZone Fan_Batterie_Centrale_;
+        	faceType baffle;
+        }
+        Fan_Radiatori_
+        {
+        	level ($Fan_Radiatori_RefLvl $Fan_Radiatori_RefLvl);
+        	faceZone Fan_Radiatori_;
+        	faceType baffle;
+        }
+
+    }
+
+    resolveFeatureAngle 30; //90
+	
+    refinementRegions
+    {
+        refinementBox
+        {
+            mode inside;
+            levels (($lvl1 $lvl1));
+        }
+        refinementBox2
+        {
+            mode inside;
+            levels (($lvl2 $lvl2));
+        }
+        refinementBox3
+        {
+            mode inside;
+            levels (($lvl3 $lvl3));
+        }
+        refinementBox4
+        {
+            mode inside;
+            levels (($lvl4 $lvl4));
+        }
+        refinementBox5
+        {
+            mode inside;
+            levels (($lvl5 $lvl5));
+        }
+        refinementBox6
+        {
+            mode inside;
+            levels (($lvl6 $lvl6));
+        }
+        refinementBox7
+        {
+            mode inside;
+            levels (($lvl7 $lvl7));
+        }
+    }
+
+    locationInMesh (10.1 10.1 10.1);
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 5;
+	nSmoothInternal 5;
+    tolerance 2;
+    nSolveIter 200;
+    nRelaxIter 5;
+
+    // Feature snapping
+        nFeatureSnapIter 40;
+        implicitFeatureSnap false;
+        explicitFeatureSnap true;
+        multiRegionFeatureSnap true;
+}
+
+addLayersControls
+{
+    relativeSizes false;
+    layers
+    {
+        DPE_Telaio
+        {
+            nSurfaceLayers $Telaio_nLayers;
+        }
+        DPE_FW
+        {
+            nSurfaceLayers $FW_nLayers;
+        }
+        DPE_RW
+        {
+            nSurfaceLayers $RW_nLayers;
+        }
+        DPE_MW
+        {
+            nSurfaceLayers $MW_nLayers;
+        }
+        DPE_FWheels
+        {
+            nSurfaceLayers $Fwh_nLayers;
+        }
+        DPE_RWheels
+        {
+            nSurfaceLayers $Rwh_nLayers;
+        }
+        DPE_Diffusore
+        {
+            nSurfaceLayers $Diff_nLayers;
+        }
+    }
+
+    expansionRatio 1.2; //1.2
+    firstLayerThickness 0.00025;
+    minThickness 0.00002;
+    nGrow 0;
+    featureAngle 360;
+    slipFeatureAngle 75;
+    nRelaxIter 8;
+    nSmoothSurfaceNormals 4;
+    nSmoothNormals 4;
+    nSmoothThickness 15;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedianAxisAngle 90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter 50;
+    nRelaxedIter 3;
+}
+
+meshQualityControls
+{
+	maxNonOrtho 75;
+	maxBoundarySkewness 10;
+	maxInternalSkewness 3;
+	maxConcave 80;
+	minVol 1e-13;
+	minTetQuality -1e+30;
+	minArea -1;
+	minTwist 0.05;
+	minDeterminant 0.03;
+	minFaceWeight 0.07;
+	minVolRatio 0.01;
+	minTriangleTwist -1;
+	nSmoothScale   4;
+	errorReduction 0.75;
+	relaxed
+	    {
+		maxNonOrtho 80;
+	    }
+}
+
+writeFlags
+(
+    scalarLevels
+    layerSets
+    layerFields     // write volScalarField for layer coverage
+);
+
+mergeTolerance 1e-6;
+
+
+// ************************************************************************* //

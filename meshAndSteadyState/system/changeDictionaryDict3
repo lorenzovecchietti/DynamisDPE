@@ -1,0 +1,278 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//dictionaryReplacement
+//{
+
+    boundary
+    {
+		Fan_Batterie_slave
+			{
+				type            patch;
+				neighbourPatch 	Fan_Batterie;
+			}
+		Fan_Batterie
+			{
+				type            patch;
+				neighbourPatch 	Fan_Batterie_slave;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            patch;
+				neighbourPatch 	Fan_Batterie_Centrale;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            patch;
+				neighbourPatch 	Fan_Batterie_Centrale_slave;
+			}
+		Fan_Radiatori_slave
+			{
+				type            patch;
+				neighbourPatch 	Fan_Radiatori;
+			}
+		Fan_Radiatori
+			{
+				type            patch;
+				neighbourPatch 	Fan_Radiatori_slave;
+			}
+    }
+
+    U                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+		Fan_Batterie
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+		Fan_Radiatori_slave
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+		Fan_Radiatori
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+		Fan_Batterie_Centrale
+			{
+				type            pressureInletOutletVelocity;
+				value           uniform (0 0 0);
+			}
+	    }
+    }
+
+    p                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanBatterie"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction in; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+		Fan_Batterie
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanBatterie"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction out; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanBatterie"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction in; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+		Fan_Batterie_Centrale
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanBatterie"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction out; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+		Fan_Radiatori_slave
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanRadiatori"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction out; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+		Fan_Radiatori
+			{
+				type fanPressure;
+				patchType totalPressure;
+				file "./constant/fanRadiatori"; // Fan curve file name
+				outOfBounds clamp; // (error|warn|clamp|repeat)
+				direction in; // Direction of flow through fan
+				p0 uniform 0; // Environmental total pressure
+				value uniform 0; // Initial pressure
+				gamma 1;
+			}
+	    }
+    }
+
+    nut                           // field to change
+    {
+    boundaryField
+	    {
+		Fan_Batterie_slave
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+		Fan_Batterie
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+		Fan_Batterie_Centrale_slave
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+		Fan_Radiatori_slave
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+		Fan_Radiatori
+			{
+				type            calculated;
+				value           uniform 0;
+			}
+	    }
+    }
+
+    k                           // field to change
+    {
+    boundaryField
+        {
+		Fan_Batterie_Centrale_slave
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+		Fan_Batterie_slave
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+		Fan_Batterie
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+		Fan_Radiatori_slave
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+		Fan_Radiatori
+			{
+				type            fixedValue;
+				value           uniform 0.085;
+			}
+        }
+    }
+
+    omega                           // field to change
+    {
+    boundaryField
+        {
+		Fan_Batterie_Centrale_slave
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+		Fan_Batterie_Centrale
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+		Fan_Batterie_slave
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+		Fan_Batterie
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+		Fan_Radiatori_slave
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+		Fan_Radiatori
+			{
+				type            fixedValue;
+				value           uniform 1.78;
+			}
+        }
+    }
+//}
+
+
+// ************************************************************************* //

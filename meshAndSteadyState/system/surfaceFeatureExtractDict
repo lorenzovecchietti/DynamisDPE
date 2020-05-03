@@ -1,0 +1,231 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+DPE_FW.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+
+DPE_Telaio.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+DPE_RW.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+DPE_MW.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+DPE_FWheels.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+DPE_RWheels.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+DPE_Diffusore.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+Batterie.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+Radiatori.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   180;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+Fan_Batterie_.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   0;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+ Fan_Batterie_Centrale_.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   0;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+Fan_Radiatori_.stl
+{
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
+    {
+        includedAngle   0;
+    }
+
+    subsetFeatures
+    {
+        nonManifoldEdges       no;
+        openEdges       yes;
+    }
+
+    writeObj                yes;
+}
+
+
+// ************************************************************************* //
