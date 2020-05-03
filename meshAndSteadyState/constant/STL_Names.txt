@@ -1,0 +1,12 @@
+Batterie.stl
+DPE_Diffusore.stl
+DPE_FW.stl
+DPE_FWheels.stl
+DPE_MW.stl
+DPE_RW.stl
+DPE_RWheels.stl
+DPE_Telaio.stl
+Fan_Batterie_.stl
+Fan_Batterie_Centrale_.stl
+Fan_Radiatori_.stl
+Radiatori.stl
