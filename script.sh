@@ -1,3 +1,7 @@
+#################################################################
+# Non è consigliabile runnare l'intero script in una volta sola #
+#################################################################
+
 cd meshAndSteadyState
 mkdir log
 mkdir backupNoLayer
