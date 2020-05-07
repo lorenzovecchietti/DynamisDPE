@@ -1,0 +1,269 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+rho		1.225;
+lift	(0 1 0);
+drag	(1 0 0);
+CR		(0 0 0);
+pitch	(0 0 1);
+magU	16;
+wb		1.55;
+A		1;
+	
+
+
+DPE_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_Group DPE_Wheels );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+    porosity    false;
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_FW_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_FW );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_RW_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_RW );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_Telaio_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_Telaio );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_FWheels_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_FWheels );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_RWheels_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_RWheels );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_MW_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_MW );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+DPE_Diffusore_forces
+{
+    type        forces;
+
+    functionObjectLibs ( "libforces.so" );
+
+    writeControl    timeStep;
+    timeInterval    1;
+
+    log         yes;
+
+    patches     ( DPE_Diffusore );
+    
+    rhoInf      $rho;          // Redundant for incompressible
+    rho         rhoInf;     // Indicates incompressible
+    liftDir     $lift;
+    dragDir     $drag;
+    CofR        $CR;  // Axle midpoint on ground
+    pitchAxis   $pitch;
+    magUInf     $magU;
+    lRef        $wb;        // Wheelbase length
+    Aref        $A;        // Estimated
+/*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+*/
+}
+// ************************************************************************* //
